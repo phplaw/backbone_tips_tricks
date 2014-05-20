@@ -317,7 +317,6 @@ var personView  = Backbone.View.extend({
               //alert(emptyPerson.get("name") + " " + emptyPerson.validationError);
               return;
             }
-
             
             var newPerson = new personView({model: emptyPerson });
             self.$('tbody').append(newPerson.render());
