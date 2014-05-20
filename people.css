@@ -1,0 +1,184 @@
+div.overlay {
+    width: 100%; height: 100%; 
+    position: fixed; top: 0; left: 0;
+    z-index: 1000;
+    overflow: visible;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+div.popup_wrapper {margin: 125px auto 0;/*margin-top-min: 40px*/ width: 465px}
+.pop_container_advanced {
+    background: none repeat scroll 0 0 rgba(82, 82, 82, 0.7);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.popup_content h2.dialog_title{
+    background:#6d84b4;
+    border:1px solid #3b5998;
+    border-bottom:none;
+    color:#fff;
+    font-size:14px;
+    font-weight:bold;
+    margin:0
+}
+
+.popup_content h2 span {
+    display: block;
+    padding: 5px 10px;
+}
+.popup_content div.dialog_content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #555555;
+    border-image: none;
+    border-right: 1px solid #555555;
+    border-style: solid;
+    border-width: 0 1px 1px;
+}
+.popup_content .dialog_body {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 10px;
+}
+.clearfix {}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.popup_content .dialog_buttons {
+    background: none repeat scroll 0 0 #F2F2F2;
+    padding: 8px 10px;
+    position: relative;
+}
+.mlm {
+    margin-left: 10px;
+}
+.rfloat {
+    float: right;
+}
+.popup_content .dialog_buttons_msg {
+    line-height: 17px;
+    padding-top: 4px;
+}
+
+.generic_dialog div.dialog_loading {
+    background-color: #F2F2F2;
+    border: 1px solid #606060;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.popup_content .dialog_loading, .dialog_loading_shown .dialog_title, .dialog_loading_shown .dialog_content {
+    display: none;
+}
+
+.uiButton {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 13px;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+}
+.uiButton + .uiButton {
+    margin-left: 4px;
+}
+
+.uiButtonLarge {
+    height: 19px;
+}
+
+.uiButtonText, .uiButton input {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    padding: 1px 0 2px;
+    white-space: nowrap;
+}
+
+.uiButton, .uiButtonSuppressed:active, .uiButtonSuppressed:focus, .uiButtonSuppressed:hover {
+    background-color: #EEEEEE;
+    background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yZ/r/vjndtjnCnga.png");
+    background-position: 0 -49px;
+    background-repeat: no-repeat;
+    background-size: 500px 238px;
+    border-color: #999999 #999999 #888888;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.uiButtonConfirm {
+    background-color: #5B74A8;
+    background-image: url("https://fbstatic-a.akamaihd.net/rsrc.php/v2/yZ/r/vjndtjnCnga.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 500px 238px;
+    border-color: #29447E #29447E #1A356E;
+}
+.uiButtonConfirm input {color: #FFFFFF}
+body {
+    color:#333333;
+    font-family: Helvetica,Arial,'lucida grande',tahoma,verdana,arial,sans-serif;
+    font-size: 12px;
+}
+/* \end facebook popup style */
+iframe 	{margin:0px}
+img {border:0}
+a { text-decoration: none}
+a:hover { text-decoration: underline}
+table,th,td,input,textarea { font-size:100% }
+div.dialog_body h3 { margin: 0 0 10px; }
+div.dialog_body label { display: block; margin-bottom: 15px }
+
+div.dialog_body label input { width:  95%; margin-top: 5px; color: #888888 }
+div.dialog_body div.avatar { 
+    float: left; width: 50px; height: 50px; border: 1px solid #999999; 
+    padding: 5px; margin-right: 5px; background-color: #F2F2F2;
+}
+.dialog_body div.error {
+    background-color: #FFBABA;
+    color: #D8000C; padding: 10px;
+    border:1px solid #D8000C;
+}
+.dialog_body div.error:before{
+  content:'\f057';
+}
+
+div.person_detail label {margin-bottom: 5px}
+
+h1 {font-size:28px;margin-top:0px;font-weight:normal}
+h2 {font-size:22px;margin-top:10px;margin-bottom:10px;font-weight:normal}
+h3 {font-size:17px;font-weight:normal}
+h4 {font-size:12px}
+h5 {font-size:11px}
+h6 {font-size:10px}
+
+table.reference,table.tecspec{border-collapse:collapse;width:100%}
+
+table.reference tr:nth-child(odd)	{background-color:#f1f1f1}
+table.reference tr:nth-child(even)	{background-color:#ffffff}
+
+table.reference tr.fixzebra {background-color:#f1f1f1}
+
+table.reference th{
+    color:#ffffff;background-color:#555555;border:1px solid #555555;padding:3px;vertical-align:top;text-align:left;
+}
+
+table.reference th a:link,table.reference th a:visited{color:#ffffff}
+
+table.reference th a:hover,table.reference th a:active{color:#EE872A}
+
+table.reference td{border:1px solid #d4d4d4;padding:5px;padding-top:7px;padding-bottom:7px;vertical-align:top}
+table.reference td.example_code{vertical-align:bottom}
