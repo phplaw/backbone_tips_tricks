@@ -148,9 +148,9 @@ div.dialog_body div.avatar {
     padding: 5px; margin-right: 5px; background-color: #F2F2F2;
 }
 .dialog_body div.error {
-    background-color: #FFBABA;
+    background-color: #F5DFDF;
     color: #D8000C; padding: 10px;
-    border:1px solid #D8000C;
+    border:1px solid #CE9E9E;
 }
 .dialog_body div.error:before{
   content:'\f057';
