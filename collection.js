@@ -10,9 +10,10 @@ ships.add([
 ]);
 
 
-
-initialize: function () {
+var myView = Backbone.View.extend({
+  initialize: function() {
     this.collection = new ProjectsCollection();
     this.collection.bind("reset", _.bind(this.render, this));
-    this.collection.fetch(...);
-}
+    this.collection.fetch({});
+  }
+});
