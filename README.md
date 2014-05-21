@@ -3,11 +3,13 @@ Backbone Tips & Trick for Beginner
 
 
 #####SOME RESOURCE FOR DEVELOPMENT
-[Font Awesome][4]
-[Bootstrap Tour][2]
-[mustache][3]
-[Backbonejs][1]
+1. [Font Awesome][4]
+2. [Bootstrap Tour][2]
+3. [mustache][3]
+4. [Backbonejs][1]
+5. [HandleBar][5]
 [1]:http://backbonejs.org
 [2]:http://bootstraptour.com/api/
 [3]:http://mustache.github.io
 [4]:http://fortawesome.github.io/Font-Awesome/icons/
+[5]:http://handlebarsjs.com/
