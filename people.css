@@ -138,11 +138,12 @@ iframe 	{margin:0px}
 img {border:0}
 a { text-decoration: none}
 a:hover { text-decoration: underline}
+a.inactive { text-decoration: line-through; color: #333;}
 table,th,td,input,textarea { font-size:100% }
 div.dialog_body h3 { margin: 0 0 10px; }
 div.dialog_body label { display: block; margin-bottom: 15px }
 
-div.dialog_body label input { width:  95%; margin-top: 5px; color: #888888 }
+div.dialog_body label input { width:  95%; margin-top: 5px; color: #888888; padding: 3px 2px; }
 div.dialog_body div.avatar { 
     float: left; width: 50px; height: 50px; border: 1px solid #999999; 
     padding: 5px; margin-right: 5px; background-color: #F2F2F2;

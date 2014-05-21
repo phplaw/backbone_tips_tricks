@@ -1,9 +1,9 @@
 <?php
 $workers = array();
-$workers[] = array('name' => 'Misty May-Treanor', 'hometown' => 'Tokyo', 'age' => 29);
-$workers[] = array('name' => 'Kerri Walsh Jennings', 'hometown' => 'Paris', 'age' => 32);
-$workers[] = array('name' => 'Jennifer Kessy', 'hometown' => 'Rome', 'age' => 19);
-$workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17);
+$workers[] = array('name' => 'Misty May-Treanor', 'hometown' => 'Tokyo', 'age' => 29, 'active' => false);
+$workers[] = array('name' => 'Kerri Walsh Jennings', 'hometown' => 'Paris', 'age' => 32, 'active' => true);
+$workers[] = array('name' => 'Jennifer Kessy', 'hometown' => 'Rome', 'age' => 19, 'active' => false);
+$workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17, 'active' => true);
 //header('Content-Type: application/json');
 ?>
 <!DOCTYPE html>
@@ -76,7 +76,7 @@ $workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17
         <div class="avatar">Avatar</div>
         <label>Name: <%= name %></label>
         <label>Hometown: <%= hometown %></label>
-        <label>Age: <%= age %></label>
+        <label>Age: <%= age %>, Person is <%= active ? ' active' : ' not active' %></label>
       </div>
       
       <div class="dialog_buttons clearfix">
@@ -88,13 +88,16 @@ $workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17
         <div class="dialog_buttons_msg"></div>
       </div>
   </script>
-  <script type="text/template" id="person_detail">
-    <td><a href="#" class="detail"><%=name%></a></td>
+  <script type="text/template" id="person-item">
+    <td><a href="#" class="detail <%= active ? '' : 'inactive' %>"><%=name%></a></td>
     <td><%=hometown%></td>
     <td><%=age%></td>
     <td>
       <a href="#" class="edit">Edit</a>
       <a href="#" class="remove">Delete</a>
+    </td>
+    <td>        
+      <input type="checkbox" class="active" name="active" <%= active ? '' : 'checked="checked"' %>/>
     </td>
   </script>
 <script type="text/template" id="artists">
@@ -105,12 +108,15 @@ $workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17
           <th>Hometown</th>
           <th>Age</th>
           <th>Action</th>
+          <th>Banned</th>
         </tr>
       </thead>
       <tbody class="rows"></tbody>
       <tfoot>
       <tr>
-        <td colspan="4" align="right"><a href="#" class="addPerson">Add Person</a></td>
+        <td colspan="3" align="right"></td>
+        <td colspan="2"><a href="#" class="addPerson">Add Person</a>
+        </td>
       </tr>
       </tfoot>
     </table>
@@ -181,10 +187,11 @@ var personPopup = Backbone.View.extend({
       //this.delegateEvents(_.extend(this.events, {'click select': 'changeSelect'}));
       //this.delegateEvents( _.extend(this.events, options.events) );
       render: function() {
-        var pop_content = _.template(this.popContent, 
-        {name: this.model.get('name'), 
-        age: this.model.get('age'), 
-         hometown: this.model.get('hometown')
+        var pop_content = _.template(this.popContent, {
+          name: this.model.get('name'), 
+          age: this.model.get('age'), 
+          hometown: this.model.get('hometown'),
+          active: this.model.get('active')
         });
         
         var popupData = {title: this.popTitle, content: pop_content};
@@ -215,7 +222,7 @@ var personPopup = Backbone.View.extend({
     
 var personView  = Backbone.View.extend({
   tagName: 'tr',
-  template: $('#person_detail').html(),
+  template: $('#person-item').html(),
   initialize: function(){
     //se backbone events for futher information
       this.model.bind('change', this.render, this);
@@ -228,7 +235,12 @@ var personView  = Backbone.View.extend({
   events: {
      'click a.detail': 'personDetail', 
      'click a.edit': 'editPerson', 
-     'click a.remove': 'removePerson'
+     'click a.remove': 'removePerson',
+     'click input.active': 'setActive'
+  },
+  setActive: function() {
+     //this.model.save({active: !this.model.get('active')});
+     this.model.set({active: !this.model.get('active')});
   },
   removePerson: function(e) {
      e.preventDefault();
@@ -291,7 +303,7 @@ var personView  = Backbone.View.extend({
     
     addPerson: function(e) {
       e.preventDefault();
-      var emptyPerson = new Person({name: '', age: '', hometown: ''});
+      var emptyPerson = new Person({name: '', age: '', hometown: '', active: true});
       var self = this;
   
       var myPopup = new personPopup({
@@ -304,7 +316,8 @@ var personView  = Backbone.View.extend({
             var update = {
               name: myPopup.$('input[name=name]').val(),
               age: myPopup.$('input[name=age]').val(),
-              hometown: myPopup.$('input[name=hometown]').val()
+              hometown: myPopup.$('input[name=hometown]').val(),
+              active: true
             };
             
             emptyPerson.set(update);
