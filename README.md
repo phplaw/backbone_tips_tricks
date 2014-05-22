@@ -1,5 +1,9 @@
 Backbone Tips & Trick for Beginner
 ====================
+```
+tail /usr/local/apache/logs/error_log > error.log
+```
+
 
 
 #####SOME RESOURCE FOR DEVELOPMENT
