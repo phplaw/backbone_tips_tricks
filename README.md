@@ -9,11 +9,7 @@ Backbone Tips & Trick for Beginner
 4. [Backbonejs][1]
 5. [HandleBar][5]
 6. [Backbone Examples][6]
-
-
-	
-
-    /*
+7. [Webfont Generator][7]
      * TUTORIAL:
     -- http://documentcloud.github.io/backbone/ [backbone document page]
     -- http://backbonejs.org/docs/todos.html
@@ -41,8 +37,6 @@ Backbone Tips & Trick for Beginner
     ---- http://hjortureh.tumblr.com/post/23095099687/backbone-js-routing-made-simple
     ---- http://www.9lessons.info/2012/11/backbonejs-router-tutorial.html [ good for newbie ]
     ---- http://www.ryanricard.com/blog/2011/09/29/backbone-dot-js-routes-example/
-     
-    */
 
 
 
@@ -54,3 +48,4 @@ Backbone Tips & Trick for Beginner
 [4]:http://fortawesome.github.io/Font-Awesome/icons/
 [5]:http://handlebarsjs.com/
 [6]:https://github.com/ddellacosta/backbone.js-examples
+[7]:http://www.fontsquirrel.com/tools/webfont-generator
