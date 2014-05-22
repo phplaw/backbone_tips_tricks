@@ -2,6 +2,8 @@ Backbone Tips & Trick for Beginner
 ====================
 ```
 tail /usr/local/apache/logs/error_log > error.log
+less /usr/local/apache/logs/error_log > error.log
+cat /usr/local/apache/logs/error_log > error.log
 ```
 
 
