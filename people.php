@@ -89,9 +89,9 @@ $workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17
       </div>
   </script>
   
-    <script type="text/template" id="popup-person-remove">
+    <script type="text/template" id="popup-person-delete">
       <div class="dialog_body person_detail clearfix">
-        Are you sure you wanna delete person <span class="fullname"><%= name %></span> from the list?
+        Are you sure you wanna delete <span class="fullname"><%= name %></span> from the list?
       </div>
       
       <div class="dialog_buttons clearfix">
@@ -280,7 +280,7 @@ var personView  = Backbone.View.extend({
     //confirm popup
     var myPopup = new personPopup({
       'title': 'Delete Person', 
-      content: $('#popup-person-remove').html(), 
+      content: $('#popup-person-delete').html(), 
       model: this.model,
       overlay: false
     });
