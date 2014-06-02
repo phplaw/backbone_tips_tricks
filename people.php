@@ -193,6 +193,7 @@ jQuery(document).ready(function() {
 //<%- %> - to print some values with HTML escaped
 //That's all about it.
 var personPopup = Backbone.View.extend({
+      overlay: true,
       popContent: '',
       tagName: "div",
       className: "overlay",
@@ -200,6 +201,7 @@ var personPopup = Backbone.View.extend({
       initialize: function (options) { 
         this.popContent = options.content || $('#popup-person-edit').html();
         this.popTitle = options.title || 'Information';
+        this.overlay = options.overlay;
         //this.model =  options.model || {};
         //this.popTitle = options.title || $('#popup-person-edit').html();
         //alert(options.content); 
@@ -216,8 +218,13 @@ var personPopup = Backbone.View.extend({
         });
         
         var popupData = {title: this.popTitle, content: pop_content};
+        
         var html = _.template(this.template, popupData);
+        
         this.$el.html(html);
+        if (this.overlay === false) {
+          this.$el.css('background-color', 'rgba(0, 0, 0, 0)');
+        }
         $('body').append(this.el);
       },
 
@@ -274,15 +281,15 @@ var personView  = Backbone.View.extend({
     var myPopup = new personPopup({
       'title': 'Delete Person', 
       content: $('#popup-person-remove').html(), 
-      model: this.model
+      model: this.model,
+      overlay: false
     });
      myPopup.render();
      e.preventDefault(); 
   },
+  
   editPerson: function(e) {
      e.preventDefault();
-     console.log('Edit A Person');
-     console.log(this.model.toJSON());
      var myPopup = new personPopup({model: this.model});
      myPopup.render();
   },
