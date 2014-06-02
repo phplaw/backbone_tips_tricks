@@ -88,6 +88,26 @@ $workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17
         <div class="dialog_buttons_msg"></div>
       </div>
   </script>
+  
+    <script type="text/template" id="popup-person-remove">
+      <div class="dialog_body person_detail clearfix">
+        Are you sure you wanna delete person <span class="fullname"><%= name %></span> from the list?
+      </div>
+      
+      <div class="dialog_buttons clearfix">
+        <div class="rfloat mlm">
+        <label class="uiButton uiButtonLarge uiButtonConfirm">
+            <input type="button" name="delete" value="Delete Person">
+          </label>
+          <label class="uiButton uiButtonLarge">
+            <input type="button" name="cancel" value="Cancel">
+          </label>
+        </div>
+        <div class="dialog_buttons_msg"></div>
+      </div>
+  </script>
+  
+  
   <script type="text/template" id="person-item">
     <td><a href="#" class="detail <%= active ? '' : 'inactive' %>"><%=name%></a></td>
     <td><%=hometown%></td>
@@ -115,7 +135,7 @@ $workers[] = array('name' => 'April Ross', 'hometown' => 'Shanghai', 'age' => 17
       <tfoot>
       <tr>
         <td colspan="3" align="right"></td>
-        <td colspan="2"><a href="#" class="addPerson">Add Person</a>
+        <td colspan="2"><a href="#" class="addPerson">Create New Person</a>
         </td>
       </tr>
       </tfoot>
@@ -180,6 +200,7 @@ var personPopup = Backbone.View.extend({
       initialize: function (options) { 
         this.popContent = options.content || $('#popup-person-edit').html();
         this.popTitle = options.title || 'Information';
+        //this.model =  options.model || {};
         //this.popTitle = options.title || $('#popup-person-edit').html();
         //alert(options.content); 
       },
@@ -202,9 +223,15 @@ var personPopup = Backbone.View.extend({
 
       events: {
         "click input[name=ok]":          "update",
+        "click input[name=delete]":          "modelDelete",
         "click input[name=cancel]":      "close"
       },
 
+      modelDelete: function(e) {
+        this.model.destroy();
+        this.remove();
+      },
+      
       close: function(e) {
         this.remove();
       },
@@ -243,9 +270,14 @@ var personView  = Backbone.View.extend({
      this.model.set({active: !this.model.get('active')});
   },
   removePerson: function(e) {
-     e.preventDefault();
-     console.log('Remove A Person');
-     this.model.destroy();
+    //confirm popup
+    var myPopup = new personPopup({
+      'title': 'Delete Person', 
+      content: $('#popup-person-remove').html(), 
+      model: this.model
+    });
+     myPopup.render();
+     e.preventDefault(); 
   },
   editPerson: function(e) {
      e.preventDefault();
@@ -321,7 +353,7 @@ var personView  = Backbone.View.extend({
             };
             
             emptyPerson.set(update);
-            
+            //validate person before save It
             if (!emptyPerson.isValid()) {
               this.$('div.dialog_body').append('<div class="error">'  + emptyPerson.get("name") + " " + emptyPerson.validationError + '<div>');
               window.setTimeout(function() {
