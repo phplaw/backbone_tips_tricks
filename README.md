@@ -1,6 +1,13 @@
 Backbone Tips & Trick for Beginner
 ====================
 ```
+--- loading popup
+----------------- get data
+--------------------------- set data to view, stop loading, insert to view
+--- done
+```
+
+```
 tail /usr/local/apache/logs/error_log > error.log
 less /usr/local/apache/logs/error_log > error.log
 cat /usr/local/apache/logs/error_log > error.log
