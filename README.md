@@ -52,7 +52,9 @@ cat /usr/local/apache/logs/error_log > error.log
     ---- http://www.ryanricard.com/blog/2011/09/29/backbone-dot-js-routes-example/
 
 Chat Room
-```https://gitter.im/phplaw/BackbonejsDevel```
+```
+https://gitter.im/phplaw/BackbonejsDevel
+```
 
 
 [1]:http://backbonejs.org
