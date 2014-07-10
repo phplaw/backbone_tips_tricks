@@ -51,8 +51,8 @@ cat /usr/local/apache/logs/error_log > error.log
     ---- http://www.9lessons.info/2012/11/backbonejs-router-tutorial.html [ good for newbie ]
     ---- http://www.ryanricard.com/blog/2011/09/29/backbone-dot-js-routes-example/
 
-
-
+Chat Room
+```https://gitter.im/phplaw/BackbonejsDevel```
 
 
 [1]:http://backbonejs.org
