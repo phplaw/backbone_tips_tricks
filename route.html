@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Backbone.js</title>
+  <script src="jquery-1.11.0.js" type="text/javascript"></script>
+  <script src="underscore.js" type="text/javascript"></script>
+  <script src="backbone.js" type="text/javascript"></script>
+  <script>
+    function write_log(variable) {
+      try {
+        console.log(variable);
+      }
+      catch(e) {return;};
+    }
+    var Menu = Backbone.View.extend({
+    
+    el: '#menu',
+    
+    events: {
+        'click a' : 'onClick'
+    },
+    
+    onClick: function( e ) {
+        //alert('hello world');
+        // uncomment this row to make it work!
+        //console.log(this);
+        e.preventDefault();
+    }
+
+});
+
+  var Workspace = Backbone.Router.extend({
+
+  routes: {
+    "route.php": 'home',
+    "help":                 "help",    // #help
+    "search/:query":        "search",  // #search/kiwis
+    "search/:query/:page": "search"   // #search/kiwis/p7
+  },
+
+  home: function() {
+    write_log('execute home');
+    $('#route_log').html('');
+  },
+  help: function() {
+    write_log('execute help');
+    $('#route_log').html('Hello help');
+  },
+
+  search: function(query, page) {
+    write_log('execute search: ' +query);
+        $('#route_log').html('Hello search:  '+ query + ', page: ' + page);
+  }
+
+});
+
+$(function(){
+  var myworkspace = new Workspace();
+  //var mymenu = new Menu();
+  $('a').click(function(e) {
+    e.preventDefault();
+    myworkspace.navigate($(this).attr('href'),{trigger: true});
+  });
+/*  
+// Enable pushState for compatible browsers
+var enablePushState = true;  
+// Disable for older browsers
+var pushState = !!(enablePushState && window.history && window.history.pushState);
+Backbone.history.start({ pushState: pushState });
+*/
+  //Backbone.history.start({pushState: true, root: "/tip_and_trick/backbonejs/"});
+  Backbone.history.start({pushState: true, root: "/backbonejs/route.php/"});
+  //myworkspace.navigate('help');
+  
+  
+
+});
+//If your application is not being served from the root url / of your domain, be sure to tell History where the root really is, as an option: 
+// Backbone.history.start({pushState: true, root: "/public/search/"})
+
+</script>
+  <style></style>
+</head>
+<body>
+  <div id="menu">
+    <a href="help">Help</a>, 
+  <a href="search/hello">Page 1</a>, 
+  <a href="search/hello/3">Page 2</a>, 
+  <a href="search/hello/4">Page 3</a>
+  </div>
+  <div id="route_log"></div>
+  
+  
+</body>
+</html>
