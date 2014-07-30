@@ -55,7 +55,17 @@ Chat Room
 ```
 https://gitter.im/phplaw/BackbonejsDevel
 ```
-
+Save model and trigger function:
+```javascript
+this.model.save(null, {
+    success: function (model, response) {
+        console.log("success");
+    },
+    error: function (model, response) {
+        console.log("error");
+    }
+});
+```
 
 [1]:http://backbonejs.org
 [2]:http://bootstraptour.com/api/
