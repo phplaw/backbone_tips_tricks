@@ -66,6 +66,15 @@ this.model.save(null, {
     }
 });
 ```
+Get element information when click on It in a view ...
+```javascript
+editPost: function(e){
+  e.preventDefault();
+  var id = $(e.currentTarget).data("id");
+  var item = this.collection.get(id);
+}
+```
+
 
 [1]:http://backbonejs.org
 [2]:http://bootstraptour.com/api/
