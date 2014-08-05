@@ -1,0 +1,133 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link type="text/css" href ="css/bootstrap.css" rel="stylesheet">
+	</head>
+	<body>
+
+		<!-- Container -->
+		<div class="container">
+			<div class="row">
+			</div>
+		</div>
+
+		<!-- login page -->
+		<script type="text/template" id="loginTemplate">
+			<form class="form-horizontal">
+				<legend>Login Form</legend>
+
+				<div class="control-group">
+					<label class="control-label" for="username">Username</label>
+					<div class="controls">
+					<input type="text" id="username" value="<%= uname %>"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="password">Password</label>
+					<div class="controls">
+					<input type="password" id="password"/>
+					<span class="help-inline">Password should be same as Username</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="reset" class="btn">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</script>
+		
+		<!-- welcome page -->					
+		<script type="text/template" id="welcomeTemplate">
+			<div class="span6"><h3>Welcome  <%= name %></h3></div>
+			<div class="span6"><button type="button" id="backButton">Back</button></div>
+		</script>
+
+		<script type="text/javascript" src="./js/underscore.js"></script>
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/backbone.js"></script>
+		<script type="text/javascript">
+			(function () {
+
+				//define the loginView
+				var LoginView = Backbone.View.extend({
+					
+					//container for the view
+					el: $('div.row'),
+
+					//handle events
+					events: {
+						"submit": function(evt) {
+							evt.preventDefault();
+							var username = $('#username').val();							
+							var password = $('#password').val();
+							if(username == password) {
+								sessionStorage.username = username;
+								appRouterInstance.navigate("welcome", {trigger: true});
+							}
+						}
+					},
+
+					//render the login page
+					render: function() {
+						var template;
+						if(sessionStorage.username)
+						template = _.template($('#loginTemplate').html(), {uname: sessionStorage.username})
+						else
+						template = _.template($('#loginTemplate').html(), {uname: ""});
+							
+						$('div.row').html(template);						
+					}
+				});
+
+				//define the welcomeView
+				var WelcomeView = Backbone.View.extend({
+
+					//container for the view
+					el: $('div.row'),
+
+					//handle events
+					events: {
+						"click #backButton": function(evt) {
+							appRouterInstance.navigate("", {trigger: true});
+						}
+					},
+
+					//render the welcome page
+					render: function() {
+						if(sessionStorage.username) {
+							var template = _.template($('#welcomeTemplate').html(), {name: sessionStorage.username});
+							$('div.row').html(template);
+						} else {
+							alert('Username not defined');
+						}
+					}
+				});
+
+				var loginViewInstance = new LoginView();
+				var welcomeViewInstance = new WelcomeView();
+
+				//Define the Application Router
+				var AppRouter = Backbone.Router.extend({ 
+					routes: {
+						"": "index",
+						"welcome": "welcome"
+					},					
+					index: function() {
+						loginViewInstance.render();
+						
+					},
+					welcome: function() {
+						welcomeViewInstance.render();
+					}
+				});
+
+				var appRouterInstance = new AppRouter();
+				Backbone.history.start();
+			})();
+		</script>
+	</body>
+</html>
