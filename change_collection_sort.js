@@ -18,3 +18,4 @@ var SomeCollection = Backbone.Collection.extend({
 });
 
 var myCollection = new SomeCollection;
+//http://jsfiddle.net/phplaw/KMG69/
