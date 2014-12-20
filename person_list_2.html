@@ -1,0 +1,80 @@
+<html>
+    <script src="./jquery.js"></script>
+    <script src="./underscore.js"></script>
+    <script src="./backbone.js"></script>
+    <style>
+        table,
+        td {
+            border: 1px solid #000;
+        }
+    </style>
+    <body></body>
+    <script>
+        var rowTemplate = "<tr><td class='name'><%= name %></td><td class='age'><%= age %></td></tr>";
+
+        var data = [
+                {
+                    'name': 'Bert',
+                    'age' : 6
+                }, {
+                    'name': 'Ernie',
+                    'age' : 7
+                }
+            ];
+
+        /** Collection of models to draw */
+        var peopleCollection = new Backbone.Collection(data);
+
+        /** View representing a table */
+        var TableView = Backbone.View.extend({
+                tagName: 'table',
+                initialize: function () {
+                    _.bindAll(this, 'render', 'renderOne');
+                    if (this.model) {
+                        this.model.on('change', this.render, this);
+                        console.log(this.model);
+                    }
+                },
+                render: function () {
+                    this.collection.each(this.renderOne);
+                    return this;
+                },
+                renderOne: function (model) {
+                    var row = new RowView({
+                            model: model
+                        });
+                    this.$el.append(row.render().$el);
+                    return this;
+                }
+            });
+
+        /** View representing a row of that table */
+        var RowView = Backbone.View.extend({
+                events: {
+                    "click .age": function () {
+                        console.log(this.model.get("name"));
+                    }
+                },
+                initialize: function () {
+                    this.model.on('change', this.render, this);
+                },
+                model: peopleCollection.models,
+                render: function () {
+                    var html = _.template(rowTemplate, this.model.toJSON());
+                    this.$el.html(html);
+                    return this;
+                },
+            });
+
+        var tableView = new TableView({
+                collection: peopleCollection
+            });
+        $("body").append(tableView.render().$el);
+
+        console.log(peopleCollection.models[0].set({
+            'name': 'Statler',
+            'age' : 100
+        }));
+        console.log(peopleCollection.models[0]);
+    </script>
+</html>
